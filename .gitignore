@@ -9,6 +9,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+# Ignore appsettings.json and appsettings.Development.json files in the Services folder
+Services/**/appsettings.json
+Services/**/appsettings.Development.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
