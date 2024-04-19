@@ -1,7 +1,5 @@
 ﻿
 
-using FluentValidation;
-
 namespace Catalog.API.Products.UpdateProduct
 {
     public record UpdateProductCommand(
@@ -22,13 +20,11 @@ namespace Catalog.API.Products.UpdateProduct
             RuleFor(c => c.Price).GreaterThan(0).WithMessage("Price must be greater than zero.");
         }
     }
-    internal class UpdateProductCommandHandler(IDocumentSession documentSession, ILogger<UpdateProductCommandHandler> logger)
+    internal class UpdateProductCommandHandler(IDocumentSession documentSession)
         : ICommandHandler<UpdateProductCommand, UpdateProductResult>
     {
         public async Task<UpdateProductResult> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("UpdateProductCommandHandler.Handle called with {@Command}", command);
-
             var product = await documentSession.LoadAsync<Product>(command.Id, cancellationToken);
 
             if (product is null) throw new ProductNotFoundException(command.Id);

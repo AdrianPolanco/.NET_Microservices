@@ -1,5 +1,4 @@
 ﻿
-using Catalog.API.Products.GetProductsByCategory;
 
 namespace Catalog.API.Products.UpdateProduct
 {

@@ -1,5 +1,4 @@
 ﻿
-using FluentValidation;
 
 namespace Catalog.API.Products.CreateProduct
 {
@@ -27,12 +26,13 @@ namespace Catalog.API.Products.CreateProduct
     //ICommandHandler<C, R> viene del IRequestHandler<C, R>, donde C debe ser una clase o record
     //que implemente ICommand<R>, ICommand<R> viene de IRequest<R>
     //IRequestHandler<C,R> acepta C como entrada y devuelve R como respuesta
-    internal class CreateProductCommandHandler(IDocumentSession documentSession, ILogger<CreateProductCommandHandler> logger)
+    internal class CreateProductCommandHandler(IDocumentSession documentSession)
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);
+            //Removed logging because we added a new LoggingBehavior in order to get rid of logging repetitive code in each handler
+            //logger.LogInformation("CreateProductCommandHandler.Handle called with {@Command}", command);
             //Implement business logic to create a product
 
             Product product = new()
