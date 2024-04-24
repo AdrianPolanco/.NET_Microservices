@@ -11,10 +11,3 @@ global using BuildingBlocks.Exceptions.Handler;
 global using Catalog.API.Data;
 global using Marten.Pagination;
 
-
-namespace Catalog.API
-{
-    public class GlobalUsing
-    {
-    }
-}
