@@ -1,15 +1,15 @@
-﻿using Discount.Grpc.Models;
+﻿using Discount.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Discount.Grpc.Data
+namespace Discount.API.Data
 {
     public class DiscountContext : DbContext
     {
         public DbSet<Coupon> Coupons { get; set; }
 
-        public DiscountContext(DbContextOptions<DiscountContext> options) : base(options) 
-        { 
-        
+        public DiscountContext(DbContextOptions<DiscountContext> options) : base(options)
+        {
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

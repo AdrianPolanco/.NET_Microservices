@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 
-namespace Discount.Grpc.Data
+namespace Discount.API.Data
 {
     public static class Extensions
     {
