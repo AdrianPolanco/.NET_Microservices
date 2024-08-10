@@ -22,7 +22,7 @@ namespace Discount.API.Models
         public int Amount { get; set; }
     }
 
-    public class UpdateDiscountRequest
+    public class UpdateDiscountRequest : ICommand<CouponModel>
     {
         public Guid Id { get; set; }
         public string ProductName { get; set; }
@@ -30,7 +30,7 @@ namespace Discount.API.Models
         public int Amount { get; set; }
     }
 
-    public class DeleteDiscountRequest
+    public class DeleteDiscountRequest : ICommand<DeleteDiscountResponse>
     {
         public Guid Id { get; set; }
     }

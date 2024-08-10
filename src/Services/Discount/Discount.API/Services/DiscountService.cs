@@ -30,14 +30,33 @@ namespace Discount.API.Services
             return coupon.Adapt<CouponModel>();
         }
 
-        /* public override Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
+        public async Task<CouponModel?> UpdateDiscount(UpdateDiscountRequest request)
         {
-            return base.UpdateDiscount(request, context);
+            Coupon coupon = request.Adapt<Coupon>();
+            coupon = await dbContext.FindAsync<Coupon>(coupon.Id);
+            if (coupon is null) return null;
+            
+            if(coupon.ProductName != request.ProductName && coupon.Amount != request.Amount && coupon.Description != request.Description)
+            {
+                coupon.ProductName = request.ProductName;
+                coupon.Amount = request.Amount;
+                coupon.Description = request.Description;
+                dbContext.Coupons.Update(coupon);
+                await dbContext.SaveChangesAsync();
+            }
+       
+            logger.LogInformation("Discount is successfully updated. ProductName: {ProductName}", coupon.ProductName);
+            return coupon.Adapt<CouponModel>(); 
         }
 
-        public override Task<CouponModel> DeleteDiscount(DeleteDiscountRequest request, ServerCallContext context)
+        public async Task<CouponModel?> DeleteDiscount(DeleteDiscountRequest request)
         {
-            return base.DeleteDiscount(request, context);
-        }*/
+            Coupon coupon = await dbContext.FindAsync<Coupon>(request.Id);
+            if (coupon is null) return null;
+            dbContext.Coupons.Remove(coupon);
+            await dbContext.SaveChangesAsync();
+            logger.LogInformation("Discount is successfully deleted. ProductName: {ProductName}", coupon.ProductName);
+            return coupon.Adapt<CouponModel>();
+        }
     }
 }
