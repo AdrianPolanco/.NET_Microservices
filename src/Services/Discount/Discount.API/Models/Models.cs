@@ -15,19 +15,24 @@ namespace Discount.API.Models
         public int Amount { get; set; }
     }
 
-    public class CreateDiscountRequest
+    public class CreateDiscountRequest: ICommand<CouponModel>
     {
-        public CouponModel Coupon { get; set; }
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+        public int Amount { get; set; }
     }
 
     public class UpdateDiscountRequest
     {
-        public CouponModel Coupon { get; set; }
+        public Guid Id { get; set; }
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+        public int Amount { get; set; }
     }
 
     public class DeleteDiscountRequest
     {
-        public CouponModel Coupon { get; set; }
+        public Guid Id { get; set; }
     }
 
     public class DeleteDiscountResponse

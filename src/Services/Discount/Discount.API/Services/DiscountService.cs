@@ -21,12 +21,16 @@ namespace Discount.API.Services
             return couponModel;
         }
 
-       /* public override Task<CouponModel> CreateDiscount(CreateDiscountRequest request)
+        public async Task<CouponModel> CreateDiscount(CreateDiscountRequest request)
         {
-            return base.CreateDiscount(request, context);
+            Coupon coupon = request.Adapt<Coupon>();
+            await dbContext.Coupons.AddAsync(coupon);
+            logger.LogInformation("Discount is successfully created. ProductName: {ProductName}", coupon.ProductName);
+            await dbContext.SaveChangesAsync();
+            return coupon.Adapt<CouponModel>();
         }
 
-        public override Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
+        /* public override Task<CouponModel> UpdateDiscount(UpdateDiscountRequest request, ServerCallContext context)
         {
             return base.UpdateDiscount(request, context);
         }
