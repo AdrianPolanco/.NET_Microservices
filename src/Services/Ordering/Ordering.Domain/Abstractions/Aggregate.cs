@@ -4,9 +4,10 @@
     {
         public TId Id { get; set; }
         public DateTime? CreatedAt { get; set; }
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
         public DateTime? LastModifiedAt { get; set; }
-        public string LastModifiedBy { get; set; }
+        public string? LastModifiedBy { get; set; }
+
         private readonly List<IDomainEvent> _domainEvents = new();
         public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 

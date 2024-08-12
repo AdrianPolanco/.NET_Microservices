@@ -2,15 +2,15 @@
 {
     public class Order : Aggregate<OrderId>
     {
-        private readonly List<OrderItem> _orderItems;
+        private readonly List<OrderItem> _orderItems = new();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
-        public CustomerId CustomerId { get; set; }
-        public OrderName OrderName { get; set; }
-        public Address ShippingAddress { get; set; }
-        public Address BillingAddress { get; set; }
-        public Payment Payment { get; set; }
-        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public CustomerId CustomerId { get; set; } = null!;
+        public OrderName OrderName { get; set; } = null!;
+        public Address ShippingAddress { get; set; } = null!;
+        public Address BillingAddress { get; set; } = null!;
+        public Payment Payment { get; set; } = null!;
+        public OrderStatus  Status { get; set; } = OrderStatus.Pending;
         public decimal TotalPrice
         {
             get => _orderItems.Sum(x => x.Price * x.Quantity);
