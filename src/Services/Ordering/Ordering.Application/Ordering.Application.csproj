@@ -11,4 +11,9 @@
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
   </ItemGroup>
 
+    <ItemGroup>
+		<PackageReference Include="EFCore.BulkExtensions" Version="8.0.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+	</ItemGroup>
+
 </Project>
