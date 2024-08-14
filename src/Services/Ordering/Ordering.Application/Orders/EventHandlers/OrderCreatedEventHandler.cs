@@ -5,7 +5,7 @@
         public Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
         {
             logger.LogInformation("Domain Event {DomainEvent} is being handled", nameof(OrderCreatedEvent));
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
